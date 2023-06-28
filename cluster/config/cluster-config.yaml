@@ -12,7 +12,7 @@ data:
   scmType: github
   GitHubOrg: ww-gitops
   GitHubRepo: justinlai-ww-macbook
-  awsAccountId: ac-
+  awsAccountId: ac-none
   prefixName: ww-jlai
   awsRegion: us-east-1
   awsTagCreator: justin.lai@weave.works
