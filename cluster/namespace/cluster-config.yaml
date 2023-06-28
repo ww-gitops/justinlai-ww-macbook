@@ -11,7 +11,7 @@ data:
   clusterIP: 10.103.5.99
   scmType: github
   GitHubOrg: ww-gitops
-  GitHubRepo: paulcarlton-ww-macbook
+  GitHubRepo: justinlai-ww-macbook
   awsAccountId: ac-
   prefixName: ww-jlai
   awsRegion: us-east-1
