@@ -38,8 +38,9 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 pushd $SCRIPT_DIR/.. >/dev/null
 source .envrc
 
-export VAULT_ADDR="https://vault.kubernetes.docker.internal"
-
+#export VAULT_ADDR="https://vault.kubernetes.docker.internal"
+#export VAULT_ADDR="http://10.1.3.39:8200"
+export VAULT_ADDR="http://kubernetes.docker.internal:8200"
 if [ "$(vault status --format=json | jq -r '.initialized')" == "true" ]; then
   echo "Vault already initialized"
   exit 0
