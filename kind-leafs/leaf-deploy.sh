@@ -32,12 +32,18 @@ function args() {
   done
 }
 
+cat .envrc | grep "export GITHUB_MGMT_" > /tmp/env.sh
+
 args "$@"
 
 source /tmp/env.sh
+source resources/github-config.sh
+source resources/github-secrets.sh
+
+echo "export GITHUB_TOKEN=${GITHUB_TOKEN}" >> /tmp/env.sh
 
 set +e
-kind get clusters | grep -E "^${cluster_name}$" >/dev/null
+kind get clusters | grep -E "^${CLUSTER_NAME}$" >/dev/null
 ret=$?
 set -e
 
@@ -52,13 +58,13 @@ if [ $ret -ne 0 ]; then
   mkdir -p /tmp/kubernetes/policies
   cp -f /tmp/audit.yaml /tmp/kubernetes/policies/audit.yaml
   rm -f /tmp/kubeconfig
-  kind create cluster --name ${cluster_name} --config /tmp/kind-config.yaml
+  kind create cluster --name ${CLUSTER_NAME} --config /tmp/kind-config.yaml
 
   while [ 1 -eq 1 ]
   do
     set +e
-    echo "Waiting for kube-apiserver-${cluster_name}-control-plane to be ready"
-    kubectl wait --for=condition=Ready -n kube-system pod/kube-apiserver-${cluster_name}-control-plane
+    echo "Waiting for kube-apiserver-${CLUSTER_NAME}-control-plane to be ready"
+    kubectl wait --for=condition=Ready -n kube-system pod/kube-apiserver-${CLUSTER_NAME}-control-plane
     ret=$?
     set -e
     if [ $ret -eq 0 ]; then
@@ -88,5 +94,5 @@ do
 done
 
 flux --version
-flux bootstrap github --owner $GITHUB_MGMT_ORG --repository $GITHUB_MGMT_REPO --path clusters/kind/$hostname-$cluster_name/flux
+flux bootstrap github --owner $GITHUB_MGMT_ORG --repository $GITHUB_MGMT_REPO --path clusters/kind/$hostname-$CLUSTER_NAME/flux
 
