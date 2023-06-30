@@ -5,4 +5,4 @@ metadata:
   name: dockerconfigjson-github-com
   namespace: dex
 data:
-  .dockerconfigjson: eyJhdXRocyI6eyJnaGNyLmlvIjp7ImF1dGgiOiIkKGVjaG8gcGF1bGNhcmx0b24td3c6Z2hwX1RXZlYxMFlscGdoZ1lkcVNRa0RDMzEzb2NqOGExcDA3cmk4UiB8IGJhc2U2NCkifX19
+  .dockerconfigjson: eyJhdXRocyI6eyJnaGNyLmlvIjp7ImF1dGgiOiIkKGVjaG8gandsYWk6Z2hwX3dUaTBuTU9tc1p0WkpnU1pkbld1aXh6QmdEWTVIMTBBYnhGSSB8IGJhc2U2NCkifX19
